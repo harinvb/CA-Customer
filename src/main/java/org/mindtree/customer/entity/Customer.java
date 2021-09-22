@@ -19,11 +19,12 @@ public class Customer {
 	@GeneratedValue
 	int id;
 
-	@NotNull
-	@Length(min = 2,max=20,message = "Length has to be in between 2 and 20")
 	String name;
-	
-	@NotNull
-	@Length(min = 2,max=50,message = "Length has to be in between 2 and 50")
+
 	String address;
+
+	public Customer(String name,String address){
+		this.name=name;
+		this.address=address;
+	}
 }

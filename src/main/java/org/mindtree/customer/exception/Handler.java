@@ -6,14 +6,14 @@ public class Handler {
 	private String url;
 	private String message;
 	private LocalDate raisedTime;
-	private String ExceptionName;
+	private String exceptionName;
 
 	public Handler(String url, String message, String en) {
 		super();
 		this.url = url;
 		this.message = message;
 		this.raisedTime=LocalDate.now();
-		this.ExceptionName = en;
+		this.exceptionName = en;
 	}
 
 	public Handler() {
@@ -44,10 +44,10 @@ public class Handler {
 	}
 
 	public String getExceptionName() {
-		return ExceptionName;
+		return exceptionName;
 	}
 
 	public void setExceptionName(String exceptionName) {
-		ExceptionName = exceptionName;
+		exceptionName = exceptionName;
 	}
 }

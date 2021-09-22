@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.mindtree.customer.DTO.CustomerDTO;
 import org.mindtree.customer.entity.Customer;
 import org.mindtree.customer.exception.ResourceNotFoundException;
 import org.mindtree.customer.service.CustomerService;
+import org.mindtree.customer.utils.Convertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,9 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerService customerService;
+
+	@Autowired
+	Convertor convertor;
 	
 	@GetMapping(value = "/customers/{id}")
 	public Customer getCustomerById(@PathVariable String id) throws ResourceNotFoundException {
@@ -33,8 +38,8 @@ public class CustomerController {
 	
 	@PostMapping(value = "/customers")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Customer addCustomer(@Valid @RequestBody Customer customer) {
-		return customerService.addCustomer(customer);
+	public Customer addCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+		return customerService.addCustomer(convertor.convert(customerDTO));
 	}
 
 	@GetMapping(value = "/customers")
