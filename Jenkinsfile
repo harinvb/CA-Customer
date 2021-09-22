@@ -43,7 +43,7 @@ pipeline {
     }
     stage('Publish Artifacts') {
        steps {
-           archiveArtifacts(artifact: '**/target/*.jar',fingerprint: true)
+           archiveArtifacts(artifacts: '**/target/*.jar',fingerprint: true)
        }
     }
   }
