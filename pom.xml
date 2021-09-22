@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.mindtree</groupId>
 	<artifactId>customer</artifactId>
-	<version>1.0.0-RELEASE</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>customer</name>
 	<description>Comprehensive Assessment Project</description>
 	<properties>
