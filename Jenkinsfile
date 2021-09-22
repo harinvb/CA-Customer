@@ -23,22 +23,24 @@ pipeline {
         sh 'mvn package'
       }
     }
-    
+
     stage('terraform') {
       steps {
         sh 'terraform --help'
       }
     }
-    
+
     stage('ansible') {
       steps {
         sh 'ansible --help'
       }
     }
+
     stage('kubernetes') {
       steps {
         sh 'kubectl --help'
       }
     }
+
   }
 }
