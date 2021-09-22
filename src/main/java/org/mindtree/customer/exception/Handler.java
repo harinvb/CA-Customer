@@ -48,6 +48,6 @@ public class Handler {
 	}
 
 	public void setExceptionName(String exceptionName) {
-		exceptionName = exceptionName;
+		this.exceptionName = exceptionName;
 	}
 }

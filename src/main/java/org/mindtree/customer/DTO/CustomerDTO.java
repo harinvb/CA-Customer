@@ -1,22 +1,56 @@
 package org.mindtree.customer.DTO;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.GeneratedValue;
-import javax.validation.constraints.NotNull;
-@Data
-@NoArgsConstructor
 public class CustomerDTO {
 
-    int id;
+    private int id;
 
     @NotNull
     @Length(min = 2,max=20,message = "Length has to be in between 2 and 20")
-    String name;
+    private String name;
 
     @NotNull
     @Length(min = 2,max=50,message = "Length has to be in between 2 and 50")
-    String address;
+    private String address;
+    
+
+	public CustomerDTO(String name,String address) {
+		super();
+		this.name = name;
+		this.address = address;
+	}
+
+	public CustomerDTO() {
+		super();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+    
+    
+    
 }
