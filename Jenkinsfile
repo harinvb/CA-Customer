@@ -40,5 +40,10 @@ pipeline {
         sh 'kubectl --help'
       }
     }
+    stage('Publish Artifacts') {
+       steps {
+           archiveArtifacts(artifact: '**/target/*.jar',fingerprint: true)
+       }
+    }
   }
 }
