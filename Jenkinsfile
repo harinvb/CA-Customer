@@ -20,7 +20,10 @@ pipeline {
 
     stage('build') {
       steps {
-        sh 'mvn package'
+      withMaven{
+         sh 'mvn package'
+         
+      } 
       }
     }
 
