@@ -23,7 +23,7 @@ pipeline {
     stage('build') {
       steps{
         echo "Building"
-        withMaven(maven: 'maven'){
+        withMaven{
           steps{
             sh "mvn clean verify"
             sh "mvn compile package"
