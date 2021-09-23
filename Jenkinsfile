@@ -81,8 +81,8 @@ pipeline {
           steps {
             withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
               sh 'docker login -u $USERNAME -p $PASSWORD'
-              sh 'docker build -t harinvb/customer:${env.BUILD_ID} .'
-              sh 'docker push harinvb/customer:${env.BUILD_ID}'
+              sh 'docker build -t harinvb/customer:${BUILD_ID} .'
+              sh 'docker push harinvb/customer:${BUILD_ID}'
               sh 'docker logout'
             }
           }
