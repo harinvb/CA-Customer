@@ -21,10 +21,7 @@ pipeline {
 
     stage('build') {
       steps {
-          rtMavenRun pom: 'pom.xml',goals: 'clean compile package deploy', tool: 'maven'
-//        withMaven {
-//          sh 'mvn deploy'
-//        }
+          rtMavenRun pom: 'pom.xml',goals: 'clean deploy', tool: 'maven'
         withSonarQubeEnv(credentialsId: 'SONAR_TOKEN',installationName: 'sonarcloud') {
           sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
         }
