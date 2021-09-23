@@ -21,7 +21,7 @@ pipeline {
 
     stage('build') {
       steps {
-          rtMavenRun pom: 'pom.xml',goals: 'clean compile package deploy'
+          rtMavenRun pom: 'pom.xml',goals: 'clean compile package deploy', tool: 'maven'
 //        withMaven {
 //          sh 'mvn deploy'
 //        }
