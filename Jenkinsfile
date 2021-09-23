@@ -70,9 +70,9 @@ pipeline {
         stage('PMD analysis') {
           steps {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
-              sh 'mvn pmd:pmd -Dmaven.test.skip=true'
+              sh 'mvn pmd:pmd project-info-reports:index -Dmaven.test.skip=true'
             }
-
+            archiveArtifacts: 'target/site'
           }
         }
 

@@ -1,13 +1,13 @@
 package org.mindtree.customer.service.implementation;
 
-import java.util.List;
-
 import org.mindtree.customer.dao.CustomerRepository;
 import org.mindtree.customer.entity.Customer;
 import org.mindtree.customer.exception.ResourceNotFoundException;
 import org.mindtree.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {

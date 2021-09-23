@@ -1,8 +1,8 @@
 package org.mindtree.customer.DTO;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
 
 public class CustomerDTO {
 
