@@ -30,6 +30,9 @@ pipeline {
         withSonarQubeEnv(credentialsId: 'SONAR_TOKEN',installationName: 'sonarcloud') {
           sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
         }
+        artifactoryMavenBuild(goals: 'deploy',pom: 'pom.xml'){
+          sh 'mvn deploy'
+        }
       }
     }
 
