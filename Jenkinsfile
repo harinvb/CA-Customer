@@ -21,7 +21,7 @@ pipeline {
 
     stage('build') {
       steps {
-        withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+        withSonarQubeEnv(credentialsId: 'SONAR_TOKEN',installationName: 'sonarcloud') {
           sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
         }
         withMaven {
