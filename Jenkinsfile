@@ -56,9 +56,9 @@ pipeline {
       }
     }
 
-    stage('Publish to Artifactory') {
+    stage('Publish & PMD Analysis') {
       parallel {
-        stage('Publish to Artifactory') {
+        stage('Publishing to Artifactory') {
           steps {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
               sh 'mvn deploy -Dmaven.test.skip=true'
@@ -70,9 +70,9 @@ pipeline {
         stage('PMD analysis') {
           steps {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
-              sh 'mvn pmd:pmd project-info-reports:index -Dmaven.test.skip=true'
+              sh 'mvn pmd:pmd -Dmaven.test.skip=true'
             }
-            archiveArtifacts('target/site/**')
+            archiveArtifacts('target/site/*.html')
           }
         }
 
