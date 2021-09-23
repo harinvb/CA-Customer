@@ -7,13 +7,13 @@ pipeline {
     }
   }
   stages {
-    stage('Print Message') {
+    stage('Print Info') {
       steps {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
       }
     }
 
-    stage('Git') {
+    stage('Git Checkout') {
       steps {
         git(url: 'https://github.com/harinvb/CA-Customer.git', branch: 'master')
       }
@@ -21,11 +21,25 @@ pipeline {
 
     stage('build') {
       steps {
-          rtMavenRun pom: 'pom.xml',goals: 'clean deploy', tool: 'maven'
+        withMaven{
+          sh 'mvn clean compile package'
+        }
+      }
+    }
+
+    stage('Sonar Qube Analysis'){
+      steps{
         withSonarQubeEnv(credentialsId: 'SONAR_TOKEN',installationName: 'sonarcloud') {
           sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
         }
+      }
+    }
 
+    stage('PMD analysis'){
+      steps{
+        withMaven{
+          sh 'mvn pmd:pmd'
+        }
       }
     }
 
@@ -48,7 +62,8 @@ pipeline {
     }
     stage('Publish Artifacts') {
        steps {
-           archiveArtifacts(artifacts: '**/target/*.jar',fingerprint: true)
+         rtMavenRun pom: 'pom.xml',goals: 'deploy', tool: 'maven'
+         archiveArtifacts artifacts: '**/target/*.jar',fingerprint: true
        }
     }
     stage('Publish Test Results'){
