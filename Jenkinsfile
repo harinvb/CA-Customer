@@ -21,13 +21,6 @@ pipeline {
     }
 
     stage('build') {
-
-        withMaven(maven: 'maven'){
-          sh "mvn clean verify"
-        }
-        withMaven(maven: 'maven'){
-          sh "mvn compile package"
-        }
     }
 
     stage('Sonar Qube Analysis'){
@@ -39,9 +32,6 @@ pipeline {
     }
 
     stage('PMD analysis'){
-        withMaven{
-          sh "mvn pmd:pmd"
-        }
     }
 
     stage('terraform') {
