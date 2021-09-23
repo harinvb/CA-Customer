@@ -26,14 +26,14 @@ pipeline {
     stage('Compilation') {
       steps {
         withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
-          sh 'mvn compile'
+          sh 'mvn compile -Dmaven.test.skip=true'
         }
 
         echo 'Compilation Successful'
       }
     }
 
-    stage('Packaging') {
+    stage('Packaging & Analysis') {
       parallel {
         stage('Packaging') {
           steps {
@@ -47,7 +47,7 @@ pipeline {
         stage('Sonar Analysis') {
           steps {
             withSonarQubeEnv(installationName: 'sonarcloud', credentialsId: 'SONAR_TOKEN') {
-              sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
+              sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer -Dmaven.test.skip=true'
             }
 
           }
@@ -61,7 +61,7 @@ pipeline {
         stage('Publish to Artifactory') {
           steps {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
-              sh 'mvn deploy'
+              sh 'mvn deploy -Dmaven.test.skip=true'
             }
 
           }
@@ -70,7 +70,7 @@ pipeline {
         stage('PMD analysis') {
           steps {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
-              sh 'mvn pmd:pmd'
+              sh 'mvn pmd:pmd -Dmaven.test.skip=true'
             }
 
           }
