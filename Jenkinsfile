@@ -60,6 +60,7 @@ pipeline {
 
             archiveArtifacts 'target/site/*.html'
           }
+        }
       }
     }
 
@@ -73,26 +74,23 @@ pipeline {
 
           }
         }
-        }
 
         stage('Docker Image Build & Publish') {
           steps {
-            withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+            withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
               sh 'docker login -u $USERNAME -p $PASSWORD'
               sh 'docker build -t harinvb/customer:${BUILD_ID} .'
               sh 'docker push harinvb/customer:${BUILD_ID}'
               sh 'docker logout'
             }
           }
-          steps{
+          steps {
             sh 'cd target'
             sh 'pwd'
             sh 'ls -al'
           }
         }
-
       }
     }
-
   }
 }
