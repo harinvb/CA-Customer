@@ -1,14 +1,15 @@
+//file:noinspection GroovyAssignabilityCheck
 pipeline {
   agent {
+    //noinspection GroovyAssignabilityCheck
     node {
       label 'azure'
     }
-
   }
   stages {
     stage('Print Message') {
       steps {
-        sh 'echo "Hello  $(hostname)"'
+        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
       }
     }
 
@@ -20,10 +21,15 @@ pipeline {
 
     stage('build') {
       steps {
-      withMaven{
-         sh 'mvn package'
-         
-      } 
+        withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+          sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
+        }
+        withMaven {
+          sh 'mvn compile package'
+        }
+        withMaven {
+          sh 'mvn deploy'
+        }
       }
     }
 
