@@ -75,12 +75,5 @@ pipeline {
 
       }
     }
-
-    stage('Publish Test Results') {
-      steps {
-        junit 'surefire-reports/TEST-*.xml'
-      }
-    }
-
   }
 }
