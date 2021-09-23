@@ -88,7 +88,8 @@ pipeline {
 
         stage("Preparing Terraform Infrastructure") {
           steps{
-            sh '/Terraform/Infrastructure.sh'
+//            sh '/Terraform/Infrastructure.sh'
+            echo "$(pwd)"
           }
         }
       }
