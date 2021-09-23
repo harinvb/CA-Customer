@@ -15,7 +15,7 @@ pipeline {
 
     stage('Integration') {
       steps {
-        withMaven(publisherStrategy: 'EXPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
+        withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
           sh 'mvn clean verify'
         }
 
@@ -25,7 +25,7 @@ pipeline {
 
     stage('Compilation') {
       steps {
-        withMaven(publisherStrategy: 'EXPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
+        withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
           sh 'mvn compile -Dmaven.test.skip=true'
         }
 
@@ -69,7 +69,7 @@ pipeline {
 
         stage('PMD analysis') {
           steps {
-            withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'EXPLICIT') {
+            withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
               sh 'mvn pmd:pmd -Dmaven.test.skip=true'
             }
 
