@@ -79,9 +79,12 @@ pipeline {
 
         stage('Docker Image Build') {
           steps {
-            sh 'echo docker'
             withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-              sh ''' docker login -u $USERNAME -p $PASSWORD
+              sh ''' 
+              docker login -u $USERNAME -p $PASSWORD
+              docker build -t harinvb/customer:${env.BUILD_ID} .
+              docker push harinvb/customer:${env.BUILD_ID}
+              docker logout
                '''
             }
           }
