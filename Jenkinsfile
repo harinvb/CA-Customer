@@ -83,11 +83,19 @@ pipeline {
               sh 'docker push harinvb/customer:${BUILD_ID}'
               sh 'docker logout'
             }
-            sh 'cd target'
-            sh 'pwd'
-            sh 'ls -al'
           }
         }
+
+        stage("Preparing Terraform Infrastructure") {
+          steps{
+            sh '/Terraform/Infrastructure.sh'
+          }
+        }
+      }
+    }
+    stage("Ansible Preparation"){
+      steps{
+        echo("Infrastructure created")
       }
     }
   }

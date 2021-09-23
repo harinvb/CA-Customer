@@ -1,10 +1,15 @@
 #! /bin/bash
-if [[ -f "../Ansible/hosts" ]]
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit
+HOSTS="../Ansible/hosts"
+TERRA="../Terraform"
+if [[ -f $HOSTS ]]
 then
-rm -rf ../Ansible/hosts
+rm -rf $HOSTS
 fi
-terraform apply -auto-approve
-terraform refresh
-echo "[nodes]" >> ../Ansible/hosts
-terraform output --raw ip_address >> ../Ansible/hosts
-echo " ansible_user=$(terraform output --raw admin_username) ansible_become_pass=$(terraform output --raw admin_password)" >> ../Ansible/hosts
+touch $HOSTS
+terraform -chdir=$TERRA apply -auto-approve || terraform -chdir=$TERRA refresh
+{
+echo "[nodes]";
+terraform -chdir=$TERRA output --raw ip_address;
+echo " ansible_user=$(terraform -chdir=$TERRA output --raw admin_username) ansible_become_pass=$(terraform -chdir=$TERRA output --raw admin_password)";
+} > $HOSTS

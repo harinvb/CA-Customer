@@ -37,3 +37,5 @@ build/
 *.gdsl
 **/.terraform
 **/hosts
+*.tfstate
+**/.terraform.lock.hcl
