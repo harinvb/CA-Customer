@@ -72,7 +72,14 @@ pipeline {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
               sh 'mvn pmd:pmd -Dmaven.test.skip=true'
             }
-            archiveArtifacts('target/site/*.html')
+
+            archiveArtifacts 'target/site/*.html'
+          }
+        }
+
+        stage('Docker Image Build') {
+          steps {
+            sh 'echo docker'
           }
         }
 
