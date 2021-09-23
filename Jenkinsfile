@@ -96,7 +96,8 @@ pipeline {
     }
     stage("Ansible Preparation"){
       steps{
-        echo("Infrastructure created")
+        dir("Ansible")
+        ansiblePlaybook("ansible_java_application.yaml")
       }
     }
   }
