@@ -83,8 +83,6 @@ pipeline {
               sh 'docker push harinvb/customer:${BUILD_ID}'
               sh 'docker logout'
             }
-          }
-          steps {
             sh 'cd target'
             sh 'pwd'
             sh 'ls -al'
