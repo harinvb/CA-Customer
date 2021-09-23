@@ -21,18 +21,14 @@ pipeline {
 
     stage('build') {
       steps {
-        withMaven {
-          sh 'mvn compile package'
-        }
+          rtMavenRun pom: 'pom.xml',goals: 'clean compile package deploy'
 //        withMaven {
 //          sh 'mvn deploy'
 //        }
         withSonarQubeEnv(credentialsId: 'SONAR_TOKEN',installationName: 'sonarcloud') {
           sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
         }
-        artifactoryMavenBuild(goals: 'deploy',pom: 'pom.xml'){
-          sh 'mvn deploy'
-        }
+
       }
     }
 
