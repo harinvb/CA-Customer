@@ -37,7 +37,7 @@ pipeline {
       parallel {
         stage('Packaging') {
           steps {
-            withMaven(publisherStrategy: 'EXPLICIT') {
+            withMaven(publisherStrategy: 'IMPLICIT') {
               sh 'mvn package -Dmaven.test.skip=true'
             }
 
@@ -52,11 +52,18 @@ pipeline {
 
           }
         }
+        stage('PMD analysis') {
+          steps {
+            withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
+              sh 'mvn pmd:pmd -Dmaven.test.skip=true'
+            }
 
+            archiveArtifacts 'target/site/*.html'
+          }
       }
     }
 
-    stage('Publish & PMD Analysis') {
+    stage('Publish Artifacts and Images') {
       parallel {
         stage('Publishing to Artifactory') {
           steps {
@@ -66,18 +73,9 @@ pipeline {
 
           }
         }
-
-        stage('PMD analysis') {
-          steps {
-            withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
-              sh 'mvn pmd:pmd -Dmaven.test.skip=true'
-            }
-
-            archiveArtifacts 'target/site/*.html'
-          }
         }
 
-        stage('Docker Image Build') {
+        stage('Docker Image Build & Publish') {
           steps {
             withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
               sh 'docker login -u $USERNAME -p $PASSWORD'
@@ -85,6 +83,11 @@ pipeline {
               sh 'docker push harinvb/customer:${BUILD_ID}'
               sh 'docker logout'
             }
+          }
+          steps{
+            sh 'cd target'
+            sh 'pwd'
+            sh 'ls -al'
           }
         }
 
