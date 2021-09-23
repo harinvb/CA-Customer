@@ -14,7 +14,7 @@
         state: absent
     - name: "Stopping previous runs"
       shell:
-        cmd: "pkill -f java"
+        cmd: "pkill -f java && exit 0"
     - name: "Copying artifact"
       copy:
         dest: /tmp/app.jar
