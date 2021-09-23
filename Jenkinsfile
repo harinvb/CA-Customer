@@ -18,7 +18,8 @@ pipeline {
         withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
           sh 'mvn clean verify'
         }
-        echo "Integration Successful"
+
+        echo 'Integration Successful'
       }
     }
 
@@ -27,8 +28,59 @@ pipeline {
         withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
           sh 'mvn Compile'
         }
-        echo "Compilation Successful"
+
+        echo 'Compilation Successful'
       }
     }
+
+    stage('Packaging') {
+      parallel {
+        stage('Packaging') {
+          steps {
+            withMaven(publisherStrategy: 'IMPLICIT') {
+              sh 'mvn package'
+            }
+
+          }
+        }
+
+        stage('Sonar Analysis') {
+          steps {
+            withSonarQubeEnv(installationName: 'sonarcloud', credentialsId: 'SONAR_TOKEN') {
+              sh 'mvn sonar:sonar'
+            }
+
+          }
+        }
+
+      }
+    }
+
+    stage('Publish to Artifactory') {
+      parallel {
+        stage('Publish to Artifactory') {
+          steps {
+            withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
+              sh 'mvn deploy'
+            }
+
+          }
+        }
+
+        stage('Publish to Jenkins') {
+          steps {
+            archiveArtifacts(artifacts: '/target/*.jar', fingerprint: true)
+          }
+        }
+
+      }
+    }
+
+    stage('Publish Test Results') {
+      steps {
+        junit 'surefire-reports/*.xml'
+      }
+    }
+
   }
 }
