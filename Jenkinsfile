@@ -20,8 +20,13 @@ pipeline {
     }
 
     stage('build') {
-      withMaven{
-          sh 'mvn clean compile package'
+      steps {
+        withMaven {
+          sh 'mvn clean verify'
+        }
+        withMaven{
+          sh 'mvn compile package'
+        }
       }
     }
 
@@ -34,9 +39,11 @@ pipeline {
     }
 
     stage('PMD analysis'){
-        withMaven{
+      steps {
+        withMaven {
           sh 'mvn pmd:pmd'
         }
+      }
     }
 
     stage('terraform') {
