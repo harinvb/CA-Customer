@@ -38,7 +38,7 @@ pipeline {
         stage('Packaging') {
           steps {
             withMaven(publisherStrategy: 'IMPLICIT') {
-              sh 'mvn package'
+              sh 'mvn package -Dmaven.test.skip=true'
             }
 
           }
@@ -67,13 +67,17 @@ pipeline {
           }
         }
 
-        stage('Publish to Jenkins') {
+        stage('PMD analysis') {
           steps {
-            archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
+            withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
+              sh 'mvn pmd:pmd'
+            }
+
           }
         }
 
       }
     }
+
   }
 }
