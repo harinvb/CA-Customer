@@ -15,7 +15,7 @@ pipeline {
 
     stage('Maven') {
       steps {
-        withMaven(publisherStrategy: 'EXPLICIT', globalMavenSettingsConfig: 'MyGlobalSettings') {
+        withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '~/.m2') {
           sh 'mvn clean verify'
           sh 'mvn deploy'
         }
