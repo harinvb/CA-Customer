@@ -80,7 +80,7 @@ pipeline {
         stage('Docker Image Build') {
           steps {
             sh 'echo docker'
-            withCredentials(credentialsId: 'docker-creds'){
+            withCredentials(bindings: 'docker-creds'){
               sh ''' docker login -u $USERNAME -p $PASSWORD
                '''
             }
