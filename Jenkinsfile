@@ -12,7 +12,6 @@ pipeline {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
       }
     }
-
     stage('Git Checkout') {
       steps {
         git(url: 'https://github.com/harinvb/CA-Customer.git', branch: 'master')
@@ -21,14 +20,8 @@ pipeline {
     }
 
     stage('build') {
-      steps{
-        echo "Building"
-        withMaven{
-          steps{
-            sh "mvn clean verify"
-            sh "mvn compile package"
-          }
-        }
+      withMaven(jdk: 'Java', maven: 'maven', options: [junitPublisher(healthScaleFactor: 1.0), artifactsPublisher(), findbugsPublisher()]) {
+        sh "mvn clean verify package"
       }
     }
 
