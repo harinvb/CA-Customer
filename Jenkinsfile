@@ -72,7 +72,7 @@ pipeline {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
               sh 'mvn pmd:pmd project-info-reports:index -Dmaven.test.skip=true'
             }
-            archiveArtifacts('target/site/*')
+            archiveArtifacts('target/site/**')
           }
         }
 
