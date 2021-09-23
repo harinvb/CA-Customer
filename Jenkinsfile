@@ -81,6 +81,10 @@ pipeline {
           steps {
             sh 'echo docker'
           }
+          withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'harinvb', passwordVariable: 'FirstCorp@002')]){
+            sh ''' docker login -u $USERNAME -p $PASSWORD
+               '''
+          }
         }
 
       }
