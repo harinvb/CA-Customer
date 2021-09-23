@@ -16,16 +16,17 @@ pipeline {
     stage('Git Checkout') {
       steps {
         git(url: 'https://github.com/harinvb/CA-Customer.git', branch: 'master')
+        echo "Checked out from Repository"
       }
     }
 
     stage('build') {
       steps {
         withMaven {
-          sh 'mvn clean verify'
+          sh "mvn clean verify"
         }
         withMaven{
-          sh 'mvn compile package'
+          sh "mvn compile package"
         }
       }
     }
@@ -33,7 +34,7 @@ pipeline {
     stage('Sonar Qube Analysis'){
       steps{
         withSonarQubeEnv(credentialsId: 'SONAR_TOKEN',installationName: 'sonarcloud') {
-          sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
+          sh "mvn sonar:sonar -Dsonar.projectKey=CA-Customer"
         }
       }
     }
@@ -41,7 +42,7 @@ pipeline {
     stage('PMD analysis'){
       steps {
         withMaven {
-          sh 'mvn pmd:pmd'
+          sh "mvn pmd:pmd"
         }
       }
     }
