@@ -69,7 +69,7 @@ pipeline {
 
         stage('Publish to Jenkins') {
           steps {
-            archiveArtifacts(artifacts: '/target/*.jar', fingerprint: true)
+            archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
           }
         }
 
