@@ -1,0 +1,25 @@
+---
+
+- name: "Deploy Jar application to managed Nodes"
+  hosts: nodes
+  become: true
+  gather_facts: true
+  tasks:
+    - name: "Install Java"
+      package:
+        name: openjdk-11-jdk
+        state: present
+    - name: "Cleaning previous deployments"
+      file:
+        path: /tmp/app.jar
+        state: absent
+    - name: "Copying artifact"
+      copy:
+        dest: /tmp/app.jar
+        src: "{{ item }}"
+      with_fileglob:
+        -  "../target/*.jar"
+    - name: "Running java application"
+      shell:
+        cmd: "nohup java -jar /tmp/app.jar &"
+...
