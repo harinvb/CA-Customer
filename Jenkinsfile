@@ -95,9 +95,11 @@ pipeline {
       }
     }
     stage("Ansible Preparation"){
-        dir("Ansible"){
+      steps {
+        dir("Ansible") {
           ansiblePlaybook("ansible_java_application.yaml")
         }
+      }
     }
   }
 }
