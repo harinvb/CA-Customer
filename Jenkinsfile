@@ -26,7 +26,7 @@ pipeline {
     stage('Compilation') {
       steps {
         withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
-          sh 'mvn Compile'
+          sh 'mvn compile'
         }
 
         echo 'Compilation Successful'
@@ -47,7 +47,7 @@ pipeline {
         stage('Sonar Analysis') {
           steps {
             withSonarQubeEnv(installationName: 'sonarcloud', credentialsId: 'SONAR_TOKEN') {
-              sh 'mvn sonar:sonar'
+              sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
             }
 
           }
