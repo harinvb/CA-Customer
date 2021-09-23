@@ -1,5 +1,4 @@
 ---
-
 - name: "Deploy Jar application to managed Nodes"
   hosts: nodes
   become: true
@@ -13,6 +12,9 @@
       file:
         path: /tmp/app.jar
         state: absent
+    - name: "Stopping previous runs"
+      shell:
+        cmd: "pkill -f java"
     - name: "Copying artifact"
       copy:
         dest: /tmp/app.jar
