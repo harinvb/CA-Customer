@@ -13,15 +13,22 @@ pipeline {
       }
     }
 
-    stage('Maven') {
+    stage('Integration') {
       steps {
         withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
           sh 'mvn clean verify'
-          sh 'mvn deploy'
         }
-
+        echo "Integration Successful"
       }
     }
 
+    stage('Compilation') {
+      steps {
+        withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
+          sh 'mvn Compile'
+        }
+        echo "Compilation Successful"
+      }
+    }
   }
 }
