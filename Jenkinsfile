@@ -21,11 +21,11 @@ pipeline {
     }
 
     stage('build') {
-      steps {
-        withMaven {
+      steps{
+        withMaven(maven: 'maven'){
           sh "mvn clean verify"
         }
-        withMaven{
+        withMaven(maven: 'maven'){
           sh "mvn compile package"
         }
       }
@@ -41,7 +41,7 @@ pipeline {
 
     stage('PMD analysis'){
       steps {
-        withMaven {
+        withMaven{
           sh "mvn pmd:pmd"
         }
       }
