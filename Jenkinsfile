@@ -24,9 +24,9 @@ pipeline {
         withMaven {
           sh 'mvn compile package'
         }
-        withMaven {
-          sh 'mvn deploy'
-        }
+//        withMaven {
+//          sh 'mvn deploy'
+//        }
         withSonarQubeEnv(credentialsId: 'SONAR_TOKEN',installationName: 'sonarcloud') {
           sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer'
         }
