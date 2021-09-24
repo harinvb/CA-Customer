@@ -86,7 +86,7 @@ pipeline {
 //        }
         stage('Kubernetes'){
           steps{
-            withCredentials([file(credentialsId: 'azureKubeConfig', variable: 'KUBECRED')]){
+            withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED')]){
               sh 'cat $KUBECRED'
             }
           }
