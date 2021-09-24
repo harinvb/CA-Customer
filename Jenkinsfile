@@ -78,10 +78,7 @@ pipeline {
 //                }
                 stage('Kubernetes') {
                     steps {
-                        withCredentials([string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
-                            sh 'export BUILD_NUMBER=30'
-                            sh 'cat Deployment.yaml'
-
+//                        withCredentials([string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
 //                            variablesReplaceConfig(
 //                                    configs: [
 //                                            variablesReplaceItemConfig(
@@ -98,7 +95,8 @@ pipeline {
 //                                    variablesPrefix: '#{',
 //                                    variablesSuffix: '}#'
 //                            ,emptyValue: " ")
-                        }
+//                        }
+                        sh 'export $BUILD_NUMBER'
                         withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED')]){
                             sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
                         }
