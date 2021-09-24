@@ -12,23 +12,10 @@ pipeline {
       }
     }
 
-    stage('Integration') {
+    stage('Build') {
       steps {
-        withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
-          sh 'mvn clean verify'
-        }
-
-        echo 'Integration Successful'
-      }
-    }
-
-    stage('Compilation') {
-      steps {
-        withMaven(publisherStrategy: 'IMPLICIT', mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml') {
-          sh 'mvn compile -Dmaven.test.skip=true'
-        }
-
-        echo 'Compilation Successful'
+        sh "echo ${BRANCH_NAME}"
+          sh 'mvn clean verify compile'
       }
     }
 
@@ -36,28 +23,21 @@ pipeline {
       parallel {
         stage('Packaging') {
           steps {
-            withMaven(publisherStrategy: 'IMPLICIT') {
               sh 'mvn package -Dmaven.test.skip=true'
-            }
-
           }
         }
 
         stage('Sonar Analysis') {
           steps {
             withSonarQubeEnv(installationName: 'sonarcloud', credentialsId: 'SONAR_TOKEN') {
-              withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
                 sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer -Dmaven.test.skip=true'
-              }
             }
 
           }
         }
         stage('PMD analysis') {
           steps {
-            withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
               sh 'mvn pmd:pmd -Dmaven.test.skip=true'
-            }
             archiveArtifacts 'target/site/*.html'
           }
         }
@@ -69,7 +49,7 @@ pipeline {
         stage('Publishing to Artifactory') {
           steps {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
-              sh 'mvn deploy -Dmaven.test.skip=true'
+              sh 'mvn deploy'
             }
           }
         }
@@ -100,6 +80,11 @@ pipeline {
         }
       }
     }
+  }
 
+  post{
+    always{
+      cleanWs(deleteDirs: true, notFailBuild: true)
+    }
   }
 }
