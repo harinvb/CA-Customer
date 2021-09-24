@@ -77,9 +77,8 @@ pipeline {
                     }
                 }
                 stage('Kubernetes') {
-                    steps {
                         withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED'), string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
-                            variablesReplaceConfig(
+                            variablesReplace([variablesReplaceConfig(
                                     configs: [
                                             variablesReplaceItemConfig(
                                                     name: 'DOCKER_CONFIG',
@@ -94,10 +93,9 @@ pipeline {
                                     filePath: 'Deployment.yaml',
                                     variablesPrefix: '#{',
                                     variablesSuffix: '}#'
-                            )
+                            )])
                             sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
                         }
-                    }
                 }
             }
         }
