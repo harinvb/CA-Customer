@@ -96,7 +96,6 @@ pipeline {
 //                                    variablesSuffix: '}#'
 //                            ,emptyValue: " ")
 //                        }
-                        sh 'export $BUILD_NUMBER'
                         withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED')]){
                             sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
                         }
