@@ -9,7 +9,6 @@ pipeline {
     stage('Git Checkout') {
       steps {
         git(url: 'git@github.com:harinvb/CA-Customer.git', branch: 'master', poll: true, credentialsId: 'linux-private-key2')
-        echo 'Checked out'
       }
     }
 
@@ -47,7 +46,9 @@ pipeline {
         stage('Sonar Analysis') {
           steps {
             withSonarQubeEnv(installationName: 'sonarcloud', credentialsId: 'SONAR_TOKEN') {
-              sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer -Dmaven.test.skip=true'
+              withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
+                sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer -Dmaven.test.skip=true'
+              }
             }
 
           }
@@ -57,7 +58,6 @@ pipeline {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
               sh 'mvn pmd:pmd -Dmaven.test.skip=true'
             }
-
             archiveArtifacts 'target/site/*.html'
           }
         }
@@ -71,7 +71,6 @@ pipeline {
             withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
               sh 'mvn deploy -Dmaven.test.skip=true'
             }
-
           }
         }
 
@@ -101,5 +100,6 @@ pipeline {
         }
       }
     }
+
   }
 }
