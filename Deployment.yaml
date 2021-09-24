@@ -20,7 +20,7 @@ spec:
       containers:
         - name: customer-container
           imagePullPolicy: IfNotPresent
-          image: harinvb/customer:$BUILD_NUMBER
+          image: harinvb/customer:latest
           resources:
             requests:
               cpu: "0.5"
