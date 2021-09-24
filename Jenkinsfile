@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Git Checkout') {
       steps {
-        git(url: 'git@github.com:harinvb/CA-Customer.git', poll: true, credentialsId: 'linux-private-key2')
+        git(url: 'git@github.com:harinvb/CA-Customer.git',branch: "${BRANCH_NAME}",poll: true, credentialsId: 'linux-private-key2')
       }
     }
 
