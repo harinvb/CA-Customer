@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJoYXJpbnZiIiwicGFzc3dvcmQiOiJGaXJzdENvcnBAMDAyIiwiZW1haWwiOiJoYXJpbnZiQGdtYWlsLmNvbSIsImF1dGgiOiJhR0Z5YVc1MllqcEdhWEp6ZEVOdmNuQkFNREF5In19fQ==
+  .dockerconfigjson: #{DOCKER_CONFIG}#
 kind: Secret
 metadata:
   name: docker-creds
@@ -15,7 +15,6 @@ metadata:
     app: customer
     lang: java
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: customer
@@ -30,10 +29,58 @@ spec:
       containers:
         - name: customer-container
           imagePullPolicy: IfNotPresent
-          image: harinvb/customer:35
+          image: harinvb/customer:#{TAG}#
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "256M"
+            limits:
+              cpu: "0.7"
+              memory: "300M"
+          livenessProbe:
+
+          ports:
+            - containerPort: 8080
+              name: tcp8080
+              protocol: TCP
       imagePullSecrets:
         - name: docker-creds
+
   strategy:
     rollingUpdate:
       maxUnavailable: 35
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer
+  labels:
+    app: customer
+    lang: java
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: tcp8080
+      appProtocol: HTTP
+  selector:
+    app: customer
+    lang: java
+  type: LoadBalancer
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: customer
+  labels:
+    app: customer
+    lang: java
+spec:
+  maxReplicas: 3
+  scaleTargetRef:
+    kind: Deployment
+    name: customer
+  minReplicas: 1
+  targetCPUUtilizationPercentage: 65
 ---
