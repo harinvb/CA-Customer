@@ -68,8 +68,8 @@ pipeline {
         stage("Preparing Terraform Infrastructure") {
           steps{
             dir("Terraform") {
-              sh 'chmod +x Infrastructure.sh'
-              sh 'Infrastructure.sh'
+              sh 'chmod +x ./Infrastructure.sh'
+              sh './Infrastructure.sh'
             }
           }
         }
