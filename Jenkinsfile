@@ -77,16 +77,17 @@ pipeline {
                     }
                 }
                 stage('Kubernetes') {
+                    steps {
                         withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED'), string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
-                            variablesReplace([variablesReplaceConfig(
+                            variableReplace([variablesReplaceConfig(
                                     configs: [
                                             variablesReplaceItemConfig(
                                                     name: 'DOCKER_CONFIG',
-                                                    value: ${DOCKCRED}
+                                                    value: "${DOCKCRED}"
                                             ),
                                             variablesReplaceItemConfig(
                                                     name: 'TAG',
-                                                    value: ${BUILD_NUMBER}
+                                                    value: "${BUILD_NUMBER}"
                                             )
                                     ],
                                     fileEncoding: 'UTF-8',
@@ -96,6 +97,7 @@ pipeline {
                             )])
                             sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
                         }
+                    }
                 }
             }
         }
