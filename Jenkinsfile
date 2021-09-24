@@ -85,9 +85,9 @@ pipeline {
             }
         }
     }
-    post {
-        always {
+//    post {
+//        always {
 //            cleanWs(deleteDirs: true, notFailBuild: true)
-        }
-    }
+//        }
+//    }
 }
