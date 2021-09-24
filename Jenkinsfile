@@ -5,11 +5,11 @@ pipeline {
         }
     }
     stages {
-//        stage('Git Checkout') {
-//            steps {
-//                git(url: 'git@github.com:harinvb/CA-Customer.git', branch: "${BRANCH_NAME}", poll: true, credentialsId: 'linux-private-key2')
-//            }
-//        }
+        stage('Git Checkout') {
+            steps {
+                git(url: 'git@github.com:harinvb/CA-Customer.git', branch: "${BRANCH_NAME}", poll: true, credentialsId: 'linux-private-key2')
+            }
+        }
 //        stage('Build') {
 //            steps {
 //                sh "echo Branch : ${BRANCH_NAME}"
