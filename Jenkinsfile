@@ -83,11 +83,11 @@ pipeline {
                                     configs: [
                                             variablesReplaceItemConfig(
                                                     name: 'DOCKER_CONFIG',
-                                                    value: $ { DOCKCRED }
+                                                    value: ${DOCKCRED}
                                             ),
                                             variablesReplaceItemConfig(
                                                     name: 'TAG',
-                                                    value: $ { BUILD_NUMBER }
+                                                    value: ${BUILD_NUMBER}
                                             )
                                     ],
                                     fileEncoding: 'UTF-8',
