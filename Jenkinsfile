@@ -94,7 +94,7 @@ pipeline {
                                     filePath: 'Deployment.yaml',
                                     variablesPrefix: '#{',
                                     variablesSuffix: '}#'
-                            )
+                            ,emptyValue: " ")
                             sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
                         }
                     }
