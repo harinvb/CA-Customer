@@ -80,6 +80,7 @@ pipeline {
                     steps {
                         withCredentials([string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
                             sh 'export BUILD_NUMBER=30'
+                            sh 'cat Deployment.yaml'
 
 //                            variablesReplaceConfig(
 //                                    configs: [
