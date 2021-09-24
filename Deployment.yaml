@@ -1,0 +1,39 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJoYXJpbnZiIiwicGFzc3dvcmQiOiJGaXJzdENvcnBAMDAyIiwiZW1haWwiOiJoYXJpbnZiQGdtYWlsLmNvbSIsImF1dGgiOiJhR0Z5YVc1MllqcEdhWEp6ZEVOdmNuQkFNREF5In19fQ==
+kind: Secret
+metadata:
+  name: docker-creds
+  namespace: default
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer
+  labels:
+    app: customer
+    lang: java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer
+      lang: java
+  template:
+    metadata:
+      name: customer
+      labels:
+        lang: java
+        app: customer
+    spec:
+      containers:
+        - name: customer-container
+          imagePullPolicy: IfNotPresent
+          image: harinvb/customer:35
+      imagePullSecrets:
+        - name: docker-creds
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 35
+---

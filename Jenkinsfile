@@ -14,7 +14,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh "echo ${BRANCH_NAME}"
+        sh "echo Branch : ${BRANCH_NAME}"
           sh 'mvn clean verify compile'
       }
     }
@@ -58,8 +58,8 @@ pipeline {
           steps {
             withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
               sh 'docker login -u $USERNAME -p $PASSWORD'
-              sh 'docker build -t harinvb/customer:${BUILD_ID} .'
-              sh 'docker push harinvb/customer:${BUILD_ID}'
+              sh 'docker build -t $USERNAME/customer:${BUILD_ID} .'
+              sh 'docker push $USERNAME/customer:${BUILD_ID}'
               sh 'docker logout'
             }
           }
@@ -67,19 +67,35 @@ pipeline {
 
         stage("Preparing Terraform Infrastructure") {
           steps{
-            sh 'chmod +x $(pwd)/Terraform/Infrastructure.sh'
-            sh '$(pwd)/Terraform/Infrastructure.sh'
+            dir("Terraform") {
+              sh 'chmod +x Infrastructure.sh'
+              sh 'Infrastructure.sh'
+            }
           }
         }
       }
     }
-    stage("Ansible Preparation"){
-      steps {
-        dir("Ansible") {
-          ansiblePlaybook("ansible_java_application.yaml")
+    stage("Deployment"){
+      parallel{
+        stage("Ansible Configuration and Deployment"){
+          steps {
+            dir("Ansible") {
+              ansiblePlaybook("ansible_java_application.yaml")
+            }
+          }
+        }
+        stage("Kubernetes Deployment"){
+          steps{
+            kubernetesDeploy(kubeconfigId: "azureKubeConfig"){
+              sh 'kubectl apply -f Deployment.yaml'
+            }
+          }
         }
       }
     }
+
+
+
   }
 
   post{
