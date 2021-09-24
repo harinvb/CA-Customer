@@ -79,6 +79,7 @@ pipeline {
                 stage('Kubernetes') {
                     steps {
                         sh 'export BUILD_NUMBER=${BUILD_NUMBER}'
+                        sh 'cat Deployment.yaml'
 //                        withCredentials([string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
 //                            variablesReplaceConfig(
 //                                    configs: [
