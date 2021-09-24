@@ -78,7 +78,7 @@ pipeline {
 //                }
                 stage('Kubernetes') {
                     steps {
-                        withCredentials(string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')) {
+                        withCredentials(text(credentialsId: 'dockerDetails', variable: 'DOCKCRED')) {
                             echo "${DOCKCRED}"
 //                            variablesReplaceConfig(
 //                                    configs: [
