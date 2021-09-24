@@ -100,9 +100,9 @@ pipeline {
                             sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
                         }
                     }
-                }
-            }
-//        }
+//                }
+//            }
+        }
     }
     post {
         always {
