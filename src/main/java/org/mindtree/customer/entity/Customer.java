@@ -12,17 +12,17 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 public class Customer {
-	
-	@Id
-	@GeneratedValue
-	int id;
 
-	String name;
+    @Id
+    @GeneratedValue
+    int id;
 
-	String address;
+    String name;
 
-	public Customer(String name,String address){
-		this.name=name;
-		this.address=address;
-	}
+    String address;
+
+    public Customer(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
 }

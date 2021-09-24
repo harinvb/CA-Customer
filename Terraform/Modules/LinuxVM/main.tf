@@ -16,13 +16,14 @@ resource "azurerm_linux_virtual_machine" "LinuxVM" {
     sku       = "18.04-LTS"
     version   = "latest"
   }
-  computer_name = var.VM_name
+  computer_name         = var.VM_name
   admin_ssh_key {
     public_key = file("~/.ssh/id_rsa.pub")
     username   = "Ansible"
   }
-  depends_on = [
-  azurerm_network_interface.PublicNIC, azurerm_public_ip.PublicIP]
+  depends_on            = [
+    azurerm_network_interface.PublicNIC, azurerm_public_ip.PublicIP
+  ]
 }
 resource "azurerm_network_interface" "PublicNIC" {
   location            = var.location

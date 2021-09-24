@@ -11,24 +11,24 @@ import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-	
-	@Autowired
-	CustomerRepository customerRepository;
 
-	@Override
-	public Customer getCustomerById(int id) throws ResourceNotFoundException{
-		return customerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Customer with id : "+ id+" Not Found"));
-	}
+    @Autowired
+    CustomerRepository customerRepository;
 
-	@Override
-	public Customer addCustomer(Customer customer) { 
-		return customerRepository.save(customer);
-	}
+    @Override
+    public Customer getCustomerById(int id) throws ResourceNotFoundException {
+        return customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Customer with id : " + id + " Not Found"));
+    }
 
-	@Override
-	public List<Customer> getAllCustomers() {
-		return customerRepository.findAll();
-	}
-	
+    @Override
+    public Customer addCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    @Override
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
 
 }

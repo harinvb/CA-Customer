@@ -7,11 +7,11 @@ import java.util.List;
 
 
 public interface CustomerService {
-	
-	Customer getCustomerById(int id) throws ResourceNotFoundException;
 
-	Customer addCustomer(Customer customer);
+    Customer getCustomerById(int id) throws ResourceNotFoundException;
 
-	List<Customer> getAllCustomers();
+    Customer addCustomer(Customer customer);
+
+    List<Customer> getAllCustomers();
 
 }

@@ -27,7 +27,7 @@
         src: "{{ item }}"
         mode: "0654"
       with_fileglob:
-        -  "../target/*.jar"
+        - "../target/*.jar"
     - name: "Running java application"
       shell:
         cmd: "nohup java -jar /tmp/app.jar & echo $! > /tmp/jarpid"

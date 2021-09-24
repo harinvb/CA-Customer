@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 @Slf4j
 public class ExceptionAdvice {
-	
-	@ExceptionHandler(value = ResourceNotFoundException.class)
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	public Handler handleResourceNotFound(ResourceNotFoundException exception, HttpServletRequest req) {
-		return new Handler(req.getRequestURI(), exception.getMessage(), exception.getClass().getName());
-	}
+
+    @ExceptionHandler(value = ResourceNotFoundException.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public Handler handleResourceNotFound(ResourceNotFoundException exception, HttpServletRequest req) {
+        return new Handler(req.getRequestURI(), exception.getMessage(), exception.getClass().getName());
+    }
 
 }

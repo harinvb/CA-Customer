@@ -15,29 +15,29 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1")
 public class CustomerController {
-	
-	@Autowired
-	CustomerService customerService;
 
-	@Autowired
-	Convertor convertor;
-	
-	@GetMapping(value = "/customers/{id}")
-	public Customer getCustomerById(@PathVariable String id) throws ResourceNotFoundException {
-		int idInteger = Integer.parseInt(id);
-	return customerService.getCustomerById(idInteger);
-	}
-	
-	
-	@PostMapping(value = "/customers")
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public Customer addCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
-		return customerService.addCustomer(convertor.convert(customerDTO));
-	}
+    @Autowired
+    CustomerService customerService;
 
-	@GetMapping(value = "/customers")
-	public List<Customer> getAllCustomers(){
-		return customerService.getAllCustomers();
-	}
+    @Autowired
+    Convertor convertor;
+
+    @GetMapping(value = "/customers/{id}")
+    public Customer getCustomerById(@PathVariable String id) throws ResourceNotFoundException {
+        int idInteger = Integer.parseInt(id);
+        return customerService.getCustomerById(idInteger);
+    }
+
+
+    @PostMapping(value = "/customers")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Customer addCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+        return customerService.addCustomer(convertor.convert(customerDTO));
+    }
+
+    @GetMapping(value = "/customers")
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
+    }
 
 }
