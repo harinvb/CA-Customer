@@ -79,9 +79,7 @@ pipeline {
                 stage('Kubernetes') {
                     steps {
                         withCredentials([string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
-                            sh """ export BUILD_NUMBER=${BUILD_NUMBER}
-                                    export DOCKCRED=${DOCKCRED}
-                                """
+                            sh 'export BUILD_NUMBER=30'
 
 //                            variablesReplaceConfig(
 //                                    configs: [
