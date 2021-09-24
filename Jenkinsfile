@@ -84,13 +84,6 @@ pipeline {
             }
           }
         }
-        stage("Kubernetes Deployment"){
-          steps{
-            kubernetesDeploy(kubeconfigId: "azureKubeConfig"){
-              sh 'kubectl apply -f Deployment.yaml'
-            }
-          }
-        }
       }
     }
 
@@ -100,6 +93,9 @@ pipeline {
 
   post{
     always{
+      kubernetesDeploy(kubeconfigId: "azureKubeConfig"){
+        sh 'kubectl apply -f Deployment.yaml'
+      }
       cleanWs(deleteDirs: true, notFailBuild: true)
     }
   }
