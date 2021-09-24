@@ -10,20 +10,25 @@
         state: present
     - name: "Cleaning previous deployments"
       file:
-        path: /tmp/app.jar
+        path: "/tmp/app.jar"
         state: absent
+    - name: "Checking for previous runs"
+      stat:
+        path: "/tmp/jarpid"
+      register: pid
     - name: "Stopping previous runs"
       shell:
-        cmd: "pkill -f java"
-      ignore_unreachable: true
+        cmd: "kill -15 $(cat /tmp/jarpid)"
+      when: pid.stat.exists
       ignore_errors: true
     - name: "Copying artifact"
       copy:
         dest: /tmp/app.jar
         src: "{{ item }}"
+        mode: "0654"
       with_fileglob:
         -  "../target/*.jar"
     - name: "Running java application"
       shell:
-        cmd: "nohup java -jar /tmp/app.jar &"
+        cmd: "nohup java -jar /tmp/app.jar & echo $! > /tmp/jarpid"
 ...
