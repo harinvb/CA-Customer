@@ -78,24 +78,27 @@ pipeline {
                 }
                 stage('Kubernetes') {
                     steps {
-                        withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED'), string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')]) {
-                            variablesReplaceConfig(
-                                    configs: [
-                                            variablesReplaceItemConfig(
-                                                    name: 'DOCKER_CONFIG',
-                                                    value: "${DOCKCRED}"
-                                            ),
-                                            variablesReplaceItemConfig(
-                                                    name: 'TAG',
-                                                    value: "${BUILD_NUMBER}"
-                                            )
-                                    ],
-                                    fileEncoding: 'UTF-8',
-                                    filePath: 'Deployment.yaml',
-                                    variablesPrefix: '#{',
-                                    variablesSuffix: '}#'
-                            ,emptyValue: " ")
-                            sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
+                        withCredentials(string(credentialsId: 'dockerDetails', variable: 'DOCKCRED')) {
+                            echo "${DOCKCRED}"
+//                            variablesReplaceConfig(
+//                                    configs: [
+//                                            variablesReplaceItemConfig(
+//                                                    name: 'DOCKER_CONFIG',
+//                                                    value: "${DOCKCRED}"
+//                                            ),
+//                                            variablesReplaceItemConfig(
+//                                                    name: 'TAG',
+//                                                    value: "${BUILD_NUMBER}"
+//                                            )
+//                                    ],
+//                                    fileEncoding: 'UTF-8',
+//                                    filePath: 'Deployment.yaml',
+//                                    variablesPrefix: '#{',
+//                                    variablesSuffix: '}#'
+//                            ,emptyValue: " ")
+//                        }
+//                        withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED')]){
+//                            sh 'kubectl --kubeconfig $KUBECRED apply -f Deployment.yaml'
                         }
                     }
                 }
