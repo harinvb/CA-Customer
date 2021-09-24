@@ -87,7 +87,7 @@ pipeline {
         stage('Kubernetes'){
           steps{
             withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED')]){
-              sh 'cat $KUBECRED'
+              sh 'kubectl --kubeconfig $KUBECRED get pods -A'
             }
           }
         }
