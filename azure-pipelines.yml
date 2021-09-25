@@ -47,3 +47,9 @@ steps:
       mavenAuthenticateFeed: false
       effectivePomSkip: false
       sonarQubeRunAnalysis: false
+  - task: TerraformTaskV2@2
+    inputs:
+      provider: 'azurerm'
+      command: 'destroy'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+      environmentServiceNameAzureRM: 'azureRM'
