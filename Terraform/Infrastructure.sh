@@ -7,8 +7,8 @@ then
 rm -rf $HOSTS
 fi
 touch $HOSTS
-terraform -chdir=$TERRA init
-terraform -chdir=$TERRA apply -auto-approve || terraform -chdir=$TERRA refresh
+#terraform -chdir=$TERRA init
+#terraform -chdir=$TERRA apply -auto-approve || terraform -chdir=$TERRA refresh
 {
 echo "[nodes]";
 terraform -chdir=$TERRA output --raw ip_address;
