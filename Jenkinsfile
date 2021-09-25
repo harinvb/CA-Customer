@@ -41,7 +41,7 @@ pipeline {
             parallel {
                 stage('Publishing to Artifactory') {
                     steps {
-                        withMaven(mavenSettingsFilePath: '/home/jenkins/.m2/settings.xml', publisherStrategy: 'IMPLICIT') {
+                        withMaven(mavenSettingsFilePath: '.mvn/MavenSecrets/settings.xml', publisherStrategy: 'IMPLICIT') {
                             sh 'mvn deploy'
                         }
                     }

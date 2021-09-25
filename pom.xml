@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.mindtree</groupId>
     <artifactId>customer</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1-RELEASE</version>
     <name>customer</name>
     <description>Comprehensive Assessment Project</description>
     <properties>
