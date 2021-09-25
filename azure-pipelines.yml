@@ -15,6 +15,7 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'deploy'
+    options: '--settings .mvn/MavenSecrets/settings.xml'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     testRunTitle: 'Junit'
