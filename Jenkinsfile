@@ -59,6 +59,7 @@ pipeline {
                 stage("Preparing Terraform Infrastructure") {
                     steps {
                         dir("Terraform") {
+                            sh 'terraform apply -auto-approve'
                             sh 'chmod +x ./Infrastructure.sh'
                             sh './Infrastructure.sh'
                         }
