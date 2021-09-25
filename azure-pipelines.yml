@@ -73,8 +73,11 @@ steps:
 
   - task: CopyFiles@2
     inputs:
-      SourceFolder: 'Ansible'
-      Contents: '**'
+      SourceFolder: '$(Build.SourcesDirectory)'
+      Contents: |
+        'Ansible/**'
+        'target/*.jar'
+
       TargetFolder: '$(build.artifactstagingdirectory)'
 
   - task: CopyFiles@2
@@ -82,3 +85,8 @@ steps:
       SourceFolder: 'target'
       Contents: '*.jar'
       TargetFolder: '$(build.artifactstagingdirectory)'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
