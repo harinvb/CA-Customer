@@ -15,6 +15,7 @@
     <name>customer</name>
     <description>Comprehensive Assessment Project</description>
     <properties>
+        <sonar.projectKey>CA-Customer</sonar.projectKey>
         <java.version>11</java.version>
         <sonar.organization>devops-mindtree-hari</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
