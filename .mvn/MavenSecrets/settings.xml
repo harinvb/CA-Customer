@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd"
-          xmlns="http://maven.apache.org/SETTINGS/1.2.0">
+          xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd">
   <servers>
     <server>
       <username>admin</username>
@@ -16,12 +16,16 @@
   </servers>
   <mirrors>
     <mirror>
-      <id>
-        artifactory
-      </id>
-      <mirrorOf>jfrog-artifactory</mirrorOf>
-      <name>artifactory</name>
-      <url>http://0.0.0.0/</url>
+      <id>central</id>
+      <name>jfrog</name>
+      <url>http://artifactory-node.centralindia.cloudapp.azure.com:8081/artifactory/customer-libs-release</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+    <mirror>
+      <id>snapshots</id>
+      <name>jfrog</name>
+      <url>http://artifactory-node.centralindia.cloudapp.azure.com:8081/artifactory/customer-libs-snapshot</url>
+      <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
   <profiles>
