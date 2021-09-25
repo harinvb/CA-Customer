@@ -50,6 +50,16 @@ steps:
   - task: TerraformTaskV2@2
     inputs:
       provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+      backendServiceArm: 'azureRM'
+      backendAzureRmResourceGroupName: 'cloud-shell-storage-centralindia'
+      backendAzureRmStorageAccountName: 'csg100320015f749fb9'
+      backendAzureRmContainerName: 'terraform'
+      backendAzureRmKey: 'CA_Assignment_Ansible_Managed_Node_State'
+  - task: TerraformTaskV2@2
+    inputs:
+      provider: 'azurerm'
       command: 'destroy'
       workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
       environmentServiceNameAzureRM: 'azureRM'
