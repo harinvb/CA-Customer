@@ -18,7 +18,7 @@ resource "azurerm_linux_virtual_machine" "LinuxVM" {
   }
   computer_name         = var.VM_name
   admin_ssh_key {
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQe55Cuo73CvLPmQ7Tt8V9Wm/vAHoxRfWE8r8Jcn9DUbvPX6097isGUc0m7rBqKVL8usVGTlvaAHgCvqFZ27Oyzvu+ww5fW45dUuR4uRB0XTF6TBMfu0hDdzl19hmCJ4o0+C/6ukFvRFKMkro/1/SM2RhTUPSJShqNrsG3QJZATj4EcL5j64D5XrtYj9hkY11VizwdNFJp4/aQ3FBbLh2zyLzuUJnS/4L3aFTzDDTzpbf6UBUiZ8+Nosswv+X0ENT3HkeeAnw8qmx/H60jOCf3dS7U5LEj+jbD8bzqEUSukfi2ri4OMtjrdwFjl7qmxyiWQCQkSe/HX0zhluZKWqQHPOq+fuzR0TMzH2fPCnA9jrGUkUXtPiCJixzhhwksP74vFXCUH0cgBarlBXm7f3hEOjZyCLg1xwFMptdcHGHtl0As6wt6xwwBR5VJOOpmg9nADn3QEam4D+933hqXEHbrruO2N9SYO0VKF9j+sL044fV23osqPYqsi/MC5MCCmwE= hari@Inspiron-7573"
     username   = "Ansible"
   }
   depends_on            = [
