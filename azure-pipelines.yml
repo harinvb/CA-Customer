@@ -10,20 +10,53 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: Maven@3
+  # - task: SonarCloudPrepare@1
+  #   inputs:
+  #     SonarCloud: 'sonarCloud'
+  #     organization: 'devops-mindtree-hari'
+  #     scannerMode: 'Other'
+  # - task: Maven@3
+  #   inputs:
+  #     mavenPomFile: 'pom.xml'
+  #     goals: 'package'
+  #     options: '--settings .mvn/MavenSecrets/settings.xml'
+  #     publishJUnitResults: true
+  #     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+  #     testRunTitle: 'Junit'
+  #     codeCoverageToolOption: 'JaCoCo'
+  #     codeCoverageRestoreOriginalPomXml: true
+  #     javaHomeOption: 'JDKVersion'
+  #     mavenVersionOption: 'Default'
+  #     mavenAuthenticateFeed: false
+  #     effectivePomSkip: false
+  #     sonarQubeRunAnalysis: true
+  #     sqMavenPluginVersionChoice: 'latest'
+  #     pmdRunAnalysis: true
+  
+  # - task: Maven@3
+  #   inputs:
+  #     mavenPomFile: 'pom.xml'
+  #     goals: 'deploy'
+  #     options: '--settings .mvn/MavenSecrets/settings.xml'
+  #     publishJUnitResults: false
+  #     javaHomeOption: 'JDKVersion'
+  #     mavenVersionOption: 'Default'
+  #     mavenAuthenticateFeed: false
+  #     effectivePomSkip: false
+  #     sonarQubeRunAnalysis: false
+  - task: TerraformTaskV2@2
     inputs:
-      mavenPomFile: 'pom.xml'
-      goals: 'deploy'
-      options: '--settings .mvn/MavenSecrets/settings.xml'
-      publishJUnitResults: true
-      testResultsFiles: '**/surefire-reports/TEST-*.xml'
-      testRunTitle: 'Junit'
-      codeCoverageToolOption: 'Cobertura'
-      codeCoverageRestoreOriginalPomXml: true
-      javaHomeOption: 'JDKVersion'
-      mavenVersionOption: 'Default'
-      mavenAuthenticateFeed: false
-      effectivePomSkip: false
-      sonarQubeRunAnalysis: true
-      sqMavenPluginVersionChoice: 'latest'
-      pmdRunAnalysis: true
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+      backendServiceArm: 'azureRM'
+      backendAzureRmResourceGroupName: 'cloud-shell-storage-centralindia'
+      backendAzureRmStorageAccountName: 'csg100320015f749fb9'
+      backendAzureRmContainerName: 'terraform'
+      backendAzureRmKey: 'CA_Assignment_Ansible_Managed_Node_State'
+  - task: TerraformTaskV2@2
+    inputs:
+      provider: 'azurerm'
+      command: 'destroy'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/Terraform'
+      environmentServiceNameAzureRM: 'azureRM'
