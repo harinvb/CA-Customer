@@ -18,17 +18,17 @@
       register: pid
     - name: "Stopping previous runs"
       shell:
-        cmd: "kill -15 $(cat /tmp/jarpid)"
+        cmd: "kill -15 $(cat /tmp/jarpid) && rm -f /tmp/jarpid"
       when: pid.stat.exists
       ignore_errors: true
-#    - name: "Copying artifact"
-#      copy:
-#        dest: /tmp/app.jar
-#        src: "{{ item }}"
-#        mode: "0654"
-#      with_fileglob:
-#        - "../target/*.jar"
-#    - name: "Running java application"
-#      shell:
-#        cmd: "nohup java -jar /tmp/app.jar & echo $! > /tmp/jarpid"
+    - name: "Copying artifact"
+      copy:
+        dest: /tmp/app.jar
+        src: "{{ item }}"
+        mode: "0654"
+      with_fileglob:
+        - "../target/*.jar"
+    - name: "Running java application"
+      shell:
+        cmd: "nohup java -jar /tmp/app.jar & echo $! > /tmp/jarpid"
 ...
