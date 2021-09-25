@@ -10,29 +10,21 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: MavenAuthenticate@0
-  inputs:
-    mavenServiceConnections: 'mavenArtifactory'
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'sonarCloud'
-    scannerMode: 'Other'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'deploy'
+    options: '--settings .mvn/MavenSecrets/settings.xml'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     testRunTitle: 'Junit'
-    codeCoverageToolOption: 'JaCoCo'
+    codeCoverageToolOption: 'Cobertura'
+    codeCoverageRestoreOriginalPomXml: true
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: true
-    isJacocoCoverageReportXML: true
     sqMavenPluginVersionChoice: 'latest'
     pmdRunAnalysis: true
-- task: SonarQubePublish@4
-  inputs:
-    pollingTimeoutSec: '600'
