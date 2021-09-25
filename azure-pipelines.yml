@@ -39,9 +39,9 @@ steps:
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)'
       Contents: |
-        'target/*.jar'
-        '**/Ansible'
-        '**/Terraform'
+        target/*.jar
+        **/Ansible/**
+        **/Terraform/**
       TargetFolder: '$(build.artifactstagingdirectory)'
   - task: Docker@2
     displayName: "Docker image build & publish"
