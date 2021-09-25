@@ -1,4 +1,4 @@
-package org.mindtree.customer.DTO;
+package org.mindtree.customer.dto;
 
 import org.hibernate.validator.constraints.Length;
 

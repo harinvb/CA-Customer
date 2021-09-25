@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: customer
+  name: customer-deployment
   labels:
     app: customer
     lang: java
@@ -12,7 +12,7 @@ spec:
       lang: java
   template:
     metadata:
-      name: customer
+      name: customer-pod
       labels:
         lang: java
         app: customer
@@ -23,13 +23,11 @@ spec:
           image: harinvb/customer:latest
           resources:
             requests:
-              cpu: "0.5"
+              cpu: "0.3"
               memory: "256M"
             limits:
-              cpu: "0.7"
+              cpu: "0.5"
               memory: "300M"
-          livenessProbe:
-
           ports:
             - containerPort: 8080
               name: tcp8080
@@ -63,15 +61,13 @@ spec:
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: customer
-  labels:
-    app: customer
-    lang: java
+  name: customer-scaler
 spec:
   maxReplicas: 3
   scaleTargetRef:
+    apiVersion: apps/v1
     kind: Deployment
     name: customer
-  minReplicas: 1
-  targetCPUUtilizationPercentage: 65
+  minReplicas: 2
+  targetCPUUtilizationPercentage: 30
 ---

@@ -1,6 +1,6 @@
 package org.mindtree.customer.controller;
 
-import org.mindtree.customer.DTO.CustomerDTO;
+import org.mindtree.customer.dto.CustomerDTO;
 import org.mindtree.customer.entity.Customer;
 import org.mindtree.customer.exception.ResourceNotFoundException;
 import org.mindtree.customer.service.CustomerService;

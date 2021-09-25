@@ -1,6 +1,6 @@
 package org.mindtree.customer.utils;
 
-import org.mindtree.customer.DTO.CustomerDTO;
+import org.mindtree.customer.dto.CustomerDTO;
 import org.mindtree.customer.entity.Customer;
 import org.springframework.stereotype.Service;
 
