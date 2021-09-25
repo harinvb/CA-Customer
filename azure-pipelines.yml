@@ -37,8 +37,11 @@ steps:
   - task: CopyFiles@2
     displayName: "Copying build artifacts"
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)/target'
-      Contents: '*.jar'
+      SourceFolder: '$(Build.SourcesDirectory)'
+      Contents: |
+        'target/*.jar'
+        '**/Ansible'
+        '**/Terraform'
       TargetFolder: '$(build.artifactstagingdirectory)'
   - task: Docker@2
     displayName: "Docker image build & publish"
