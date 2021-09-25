@@ -1,5 +1,5 @@
 variable "resource_group_name" {
-  default = "Ansible_Nodes"
+  default = "cloud-shell-storage-centralindia"
   type    = string
 }
 variable "location" {

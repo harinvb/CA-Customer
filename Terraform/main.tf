@@ -1,5 +1,8 @@
 provider "azurerm" {
   features {
+    resource_group {
+      prevent_deletion_if_contains_resources = true
+    }
   }
 }
 
@@ -12,30 +15,26 @@ terraform {
   }
 }
 
-resource "azurerm_resource_group" "resource_group" {
-  location = var.location
-  name     = var.resource_group_name
-  provider = azurerm
-}
-
 module "v-net" {
   source              = "./Modules/v-net"
   network_name        = "${var.Instance}_vnet"
-  resource_group_name = azurerm_resource_group.resource_group.name
-  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = var.resource_group_name
+  location            = var.location
 }
 
 module "subnet" {
   source               = "./Modules/subnet"
   virtual_network_name = module.v-net.virtual_network_name
-  resource_group_name  = azurerm_resource_group.resource_group.name
+  resource_group_name  = module.v-net.resource_group_name
   subnet_name          = "${var.Instance}_subnet"
+  depends_on = [module.v-net]
 }
 
 module "VM" {
   source              = "./Modules/LinuxVM"
-  location            = azurerm_resource_group.resource_group.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  location            = var.location
+  resource_group_name = module.subnet.resource_group_name
   VM_name             = var.Instance
   subnet_id           = module.subnet.subnet_id
+  depends_on = [module.subnet,module.v-net]
 }
