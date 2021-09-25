@@ -14,6 +14,16 @@
       <id>snapshots</id>
     </server>
   </servers>
+  <mirrors>
+    <mirror>
+      <id>
+        artifactory
+      </id>
+      <mirrorOf>jfrog-artifactory</mirrorOf>
+      <name>artifactory</name>
+      <url>http://0.0.0.0/</url>
+    </mirror>
+  </mirrors>
   <profiles>
     <profile>
       <repositories>
