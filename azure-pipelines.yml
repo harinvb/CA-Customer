@@ -10,6 +10,11 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'sonarCloud'
+      organization: 'devops-mindtree-hari'
+      scannerMode: 'Other'
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
@@ -24,5 +29,10 @@ steps:
       mavenVersionOption: 'Default'
       mavenAuthenticateFeed: false
       effectivePomSkip: false
-      sonarQubeRunAnalysis: false
+      sonarQubeRunAnalysis: true
+      isJacocoCoverageReportXML: true
+      sqMavenPluginVersionChoice: 'latest'
       pmdRunAnalysis: true
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '500'
