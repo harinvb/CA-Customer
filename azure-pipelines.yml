@@ -18,12 +18,11 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       testRunTitle: 'Junit'
-      codeCoverageToolOption: 'Cobertura'
+      codeCoverageToolOption: 'JaCoCo'
       codeCoverageRestoreOriginalPomXml: true
       javaHomeOption: 'JDKVersion'
       mavenVersionOption: 'Default'
       mavenAuthenticateFeed: false
       effectivePomSkip: false
-      sonarQubeRunAnalysis: true
-      sqMavenPluginVersionChoice: 'latest'
+      sonarQubeRunAnalysis: false
       pmdRunAnalysis: true
