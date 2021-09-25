@@ -34,6 +34,26 @@ steps:
       sonarQubeRunAnalysis: true
       sqMavenPluginVersionChoice: 'latest'
       pmdRunAnalysis: true
+  - task: CopyFiles@2
+    displayName: "Copying build artifacts"
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)/target'
+      Contents: '*.jar'
+      TargetFolder: '$(build.artifactstagingdirectory)'
+  - task: Docker@2
+    displayName: "Docker image build & publish"
+    inputs:
+      containerRegistry: 'CA-Docker'
+      repository: 'harinvb/customer'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      tags: 'latest'
+  - task: PublishBuildArtifacts@1
+    displayName: "Publishing build artifacts to pipeline"
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'CI_ARTIFACTS'
+      publishLocation: 'Container'
   - task: Maven@3
     displayName: "Deploying build artifact"
     inputs:
@@ -46,24 +66,3 @@ steps:
       mavenAuthenticateFeed: false
       effectivePomSkip: false
       sonarQubeRunAnalysis: false
-  - task: CopyFiles@2
-    displayName: "Copying build artifacts"
-    inputs:
-      SourceFolder: '$(Build.SourcesDirectory)'
-      Contents: |
-        'target/*.jar'
-      TargetFolder: '$(build.artifactstagingdirectory)'
-  - task: Docker@2
-    displayName: "Docker image build & publish"
-    inputs:
-      containerRegistry: 'CA-Docker'
-      repository: 'harinvb/customer'
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
-      tags: 'latest'
-  - task: PublishBuildArtifacts@1
-    displayName: "Publishing build artifacts"
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
