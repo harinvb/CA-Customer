@@ -25,7 +25,7 @@
       copy:
         dest: /tmp/app.jar
         src: "{{ item }}"
-        mode: "0654"
+        mode: "0777"
       with_fileglob:
         - "../target/*.jar"
     - name: "Running java application"

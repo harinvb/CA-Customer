@@ -20,14 +20,7 @@ pipeline {
         stage('Packaging') {
             steps {
                 configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS'),configFile(fileId: 'datasource', variable: 'DS')]) {
-                    sh 'mvn package -gs $MGS $(cat $DS)'
-                }
-            }
-        }
-        stage('Docker Imgae build'){
-            steps{
-                withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh 'docker build -t ${USERNAME}/customer:latest .'
+                    sh 'mvn package -gs $MGS'
                 }
             }
         }
@@ -57,9 +50,7 @@ pipeline {
                 stage('Publishing to Artifactory') {
                     steps {
                         withMaven(globalMavenSettingsConfig: 'mavenGlobalSettings', publisherStrategy: 'IMPLICIT') {
-                            configFileProvider([configFile(fileId: 'datasource', variable: 'DS')]) {
-                                sh 'mvn deploy $(cat $DS)'
-                            }
+                                sh 'mvn deploy'
                         }
                     }
                 }
@@ -67,6 +58,7 @@ pipeline {
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
+                            sh 'docker build -t ${USERNAME}/customer:latest .'
                             sh 'docker push ${USERNAME}/customer:latest'
                             sh 'docker image rm ${USERNAME}/customer:latest'
                             sh 'docker logout'
