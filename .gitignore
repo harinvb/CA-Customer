@@ -39,3 +39,4 @@ build/
 **/hosts
 *.tfstate
 **/.terraform.lock.hcl
+/bin/

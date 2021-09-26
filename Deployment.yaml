@@ -46,6 +46,7 @@ spec:
             httpGet:
               port: 8080
               path: /actuator/health
+          name: started
       imagePullSecrets:
         - name: docker-creds
   strategy:
