@@ -32,6 +32,20 @@ spec:
             - containerPort: 8080
               name: tcp8080
               protocol: TCP
+        - livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+          name: alive
+        - readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+          name: ready
+        - startupProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
       imagePullSecrets:
         - name: docker-creds
   strategy:
@@ -41,7 +55,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: customer
+  name: customer-service
   labels:
     app: customer
     lang: java
@@ -66,7 +80,20 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: customer
-  minReplicas: 2
+    name: customer-deployment
+  minReplicas: 1
   targetCPUUtilizationPercentage: 30
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: customer-ingress
+  labels:
+    lang: java
+    app: customer
+spec:
+  defaultBackend:
+    service:
+      name: customer-service
+      port:
+        number: 80
