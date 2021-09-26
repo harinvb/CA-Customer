@@ -57,7 +57,9 @@ pipeline {
                 stage('Publishing to Artifactory') {
                     steps {
                         withMaven(globalMavenSettingsConfig: 'mavenGlobalSettings', publisherStrategy: 'IMPLICIT') {
-                            sh 'mvn deploy'
+                            configFileProvider([configFile(fileId: 'datasource', variable: 'DS')]) {
+                                sh 'mvn deploy $(cat $DS)'
+                            }
                         }
                     }
                 }
