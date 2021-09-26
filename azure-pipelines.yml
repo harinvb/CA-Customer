@@ -16,12 +16,17 @@ steps:
       SonarCloud: 'sonarCloud'
       organization: 'devops-mindtree-hari'
       scannerMode: 'Other'
+  - task: DownloadSecureFile@1
+    displayName: "Fetching project settings"
+    name: settings
+    inputs:
+      secureFile: 'settings.xml'
   - task: Maven@3
     displayName: "Building application"
     inputs:
       mavenPomFile: 'pom.xml'
       goals: 'package'
-      options: '--settings .mvn/MavenSecrets/settings.xml'
+      options: '--settings $(settings.secureFilePath)'
       publishJUnitResults: true
       testResultsFiles: '**/surefire-reports/TEST-*.xml'
       testRunTitle: 'Junit'
@@ -63,7 +68,7 @@ steps:
     inputs:
       mavenPomFile: 'pom.xml'
       goals: 'deploy'
-      options: '--settings .mvn/MavenSecrets/settings.xml'
+      options: '--settings $(settings.secureFilePath)'
       publishJUnitResults: false
       javaHomeOption: 'JDKVersion'
       mavenVersionOption: 'Default'
