@@ -17,15 +17,15 @@ pipeline {
                 }
             }
         }
-        stage('Packaging & Analysis') {
-            parallel {
-                stage('Packaging') {
-                    steps {
-                        configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS')]) {
-                            sh 'mvn package -Dmaven.test.skip=true -gs $MGS'
-                        }
-                    }
+        stage('Packaging') {
+            steps {
+                configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS')]) {
+                    sh 'mvn package -Dmaven.test.skip=true -gs $MGS'
                 }
+            }
+        }
+        stage('Analysis') {
+            parallel {
                 stage('Sonar Analysis') {
                     steps {
                         withSonarQubeEnv(installationName: 'sonarcloud', credentialsId: 'SONAR_TOKEN') {
@@ -88,7 +88,8 @@ pipeline {
                 stage('Kubernetes Deployment') {
                     steps {
                         withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED'),file(credentialsId: 'docker_creds', variable: 'DOCKCRED')]){
-                            sh 'kubectl apply --kubeconfig $KUBECRED -f $DOCKCRED -f Deployment.yaml'
+                            sh 'kubectl get --kubeconfig $KUBECRED secret docker-creds || kubectl apply --kubeconfig $KUBECRED -f $DOCKCRED'
+                            sh 'kubectl apply --kubeconfig $KUBECRED -f Deployment.yaml'
                         }
                     }
                 }
