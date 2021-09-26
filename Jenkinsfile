@@ -19,9 +19,14 @@ pipeline {
         }
         stage('Packaging') {
             steps {
-                configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS')]) {
-                    sh 'mvn package -Dmaven.test.skip=true -gs $MGS'
+                configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS'),configFile(fileId: 'datasource', variable: 'DS')]) {
+                    sh 'mvn package -gs $MGS $(cat $DS)'
                 }
+            }
+        }
+        stage('Docker Imgae build'){
+            steps{
+                sh 'docker build -t ${USERNAME}/customer:latest .'
             }
         }
         stage('Analysis') {
@@ -54,12 +59,12 @@ pipeline {
                         }
                     }
                 }
-                stage('Docker Image Build & Publish') {
+                stage('Publishing to container registry') {
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                             sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
-                            sh 'docker build -t ${USERNAME}/customer:latest .'
                             sh 'docker push ${USERNAME}/customer:latest'
+                            sh 'docker image rm ${USERNAME}/customer:latest'
                             sh 'docker logout'
                         }
                     }
