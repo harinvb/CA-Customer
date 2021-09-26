@@ -12,26 +12,34 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean verify compile'
+                configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS')]) {
+                    sh 'mvn clean verify compile -gs $MGS'
+                }
             }
         }
         stage('Packaging & Analysis') {
             parallel {
                 stage('Packaging') {
                     steps {
-                        sh 'mvn package -Dmaven.test.skip=true'
+                        configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS')]) {
+                            sh 'mvn package -Dmaven.test.skip=true -gs $MGS'
+                        }
                     }
                 }
                 stage('Sonar Analysis') {
                     steps {
                         withSonarQubeEnv(installationName: 'sonarcloud', credentialsId: 'SONAR_TOKEN') {
-                            sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer -Dmaven.test.skip=true'
+                            configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS')]) {
+                                sh 'mvn sonar:sonar -Dsonar.projectKey=CA-Customer -Dmaven.test.skip=true -gs $MGS'
+                            }
                         }
                     }
                 }
                 stage('PMD analysis') {
                     steps {
-                        sh 'mvn pmd:pmd -Dmaven.test.skip=true'
+                        configFileProvider([configFile(fileId: 'mavenGlobalSettings', variable: 'MGS')]) {
+                            sh 'mvn pmd:pmd -Dmaven.test.skip=true -gs $MGS'
+                        }
                         archiveArtifacts 'target/site/*.html'
                     }
                 }

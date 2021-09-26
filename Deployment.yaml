@@ -19,7 +19,6 @@ spec:
     spec:
       containers:
         - name: customer-container
-          imagePullPolicy: IfNotPresent
           image: harinvb/customer:latest
           resources:
             requests:
