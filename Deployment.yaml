@@ -32,18 +32,6 @@ spec:
             - containerPort: 8080
               name: tcp8080
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              port: 8080
-              path: /actuator/health
-          readinessProbe:
-            httpGet:
-              port: 8080
-              path: /actuator/health
-          startupProbe:
-            httpGet:
-              port: 8080
-              path: /actuator/health
       imagePullSecrets:
         - name: docker-creds
   strategy:
