@@ -32,21 +32,18 @@ spec:
             - containerPort: 8080
               name: tcp8080
               protocol: TCP
-        - livenessProbe:
+          livenessProbe:
             httpGet:
               port: 8080
               path: /actuator/health
-          name: alive
-        - readinessProbe:
+          readinessProbe:
             httpGet:
               port: 8080
               path: /actuator/health
-          name: ready
-        - startupProbe:
+          startupProbe:
             httpGet:
               port: 8080
               path: /actuator/health
-          name: started
       imagePullSecrets:
         - name: docker-creds
   strategy:
@@ -85,16 +82,16 @@ spec:
   minReplicas: 1
   targetCPUUtilizationPercentage: 30
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: customer-ingress
-  labels:
-    lang: java
-    app: customer
-spec:
-  defaultBackend:
-    service:
-      name: customer-service
-      port:
-        number: 80
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: customer-ingress
+#  labels:
+#    lang: java
+#    app: customer
+#spec:
+#  defaultBackend:
+#    service:
+#      name: customer-service
+#      port:
+#        number: 80
