@@ -41,7 +41,7 @@ pipeline {
             parallel {
                 stage('Publishing to Artifactory') {
                     steps {
-                        withMaven(mavenSettingsFilePath: '.mvn/MavenSecrets/settings.xml', publisherStrategy: 'IMPLICIT') {
+                        withMaven(globalMavenSettingsConfig: 'mavenGlobalSettings', publisherStrategy: 'IMPLICIT') {
                             sh 'mvn deploy'
                         }
                     }
@@ -79,8 +79,8 @@ pipeline {
                 }
                 stage('Kubernetes Deployment') {
                     steps {
-                        withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED')]){
-                            sh 'kubectl apply --kubeconfig $KUBECRED -f Deployment.yaml'
+                        withCredentials([file(credentialsId: 'kubeConfig', variable: 'KUBECRED'),file(credentialsId: 'docker_creds', variable: 'DOCKCRED')]){
+                            sh 'kubectl apply --kubeconfig $KUBECRED -f $DOCKCRED -f Deployment.yaml'
                         }
                     }
                 }

@@ -34,7 +34,6 @@ spec:
               protocol: TCP
       imagePullSecrets:
         - name: docker-creds
-
   strategy:
     rollingUpdate:
       maxUnavailable: 35
