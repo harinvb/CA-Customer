@@ -26,7 +26,9 @@ pipeline {
         }
         stage('Docker Imgae build'){
             steps{
-                sh 'docker build -t ${USERNAME}/customer:latest .'
+                withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'docker build -t ${USERNAME}/customer:latest .'
+                }
             }
         }
         stage('Analysis') {
