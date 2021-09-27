@@ -1,0 +1,636 @@
+{
+  "source": 2,
+  "revision": 19,
+  "description": null,
+  "createdBy": {
+    "displayName": "HariBabu Nalluri",
+    "url": "https://spsprodsin2.vssps.visualstudio.com/A0efa5c1d-6ab5-4215-86f5-1a3f4f0453d8/_apis/Identities/1b091ba2-59df-623c-aba4-9c7f30afec57",
+    "_links": {
+      "avatar": {
+        "href": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+      }
+    },
+    "id": "1b091ba2-59df-623c-aba4-9c7f30afec57",
+    "uniqueName": "admin@builderautoop7u8mobic9.onmicrosoft.com",
+    "imageUrl": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3",
+    "descriptor": "aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+  },
+  "createdOn": "2021-09-25T12:56:02.223Z",
+  "modifiedBy": {
+    "displayName": "HariBabu Nalluri",
+    "url": "https://spsprodsin2.vssps.visualstudio.com/A0efa5c1d-6ab5-4215-86f5-1a3f4f0453d8/_apis/Identities/1b091ba2-59df-623c-aba4-9c7f30afec57",
+    "_links": {
+      "avatar": {
+        "href": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+      }
+    },
+    "id": "1b091ba2-59df-623c-aba4-9c7f30afec57",
+    "uniqueName": "admin@builderautoop7u8mobic9.onmicrosoft.com",
+    "imageUrl": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3",
+    "descriptor": "aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+  },
+  "modifiedOn": "2021-09-27T03:51:01.397Z",
+  "isDeleted": false,
+  "lastRelease": {
+    "id": 14,
+    "name": "Release-13",
+    "artifacts": [],
+    "_links": {},
+    "description": "",
+    "releaseDefinition": {
+      "id": 1,
+      "projectReference": null,
+      "_links": {}
+    },
+    "createdOn": "2021-09-27T03:51:13.943Z",
+    "createdBy": {
+      "displayName": "HariBabu Nalluri",
+      "url": "https://spsprodsin2.vssps.visualstudio.com/A0efa5c1d-6ab5-4215-86f5-1a3f4f0453d8/_apis/Identities/1b091ba2-59df-623c-aba4-9c7f30afec57",
+      "_links": {
+        "avatar": {
+          "href": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+        }
+      },
+      "id": "1b091ba2-59df-623c-aba4-9c7f30afec57",
+      "uniqueName": "admin@builderautoop7u8mobic9.onmicrosoft.com",
+      "imageUrl": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3",
+      "descriptor": "aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+    }
+  },
+  "variables": {},
+  "variableGroups": [],
+  "environments": [
+    {
+      "id": 1,
+      "name": "TerraAnsi",
+      "rank": 1,
+      "owner": {
+        "displayName": "HariBabu Nalluri",
+        "url": "https://spsprodsin2.vssps.visualstudio.com/A0efa5c1d-6ab5-4215-86f5-1a3f4f0453d8/_apis/Identities/1b091ba2-59df-623c-aba4-9c7f30afec57",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+          }
+        },
+        "id": "1b091ba2-59df-623c-aba4-9c7f30afec57",
+        "uniqueName": "admin@builderautoop7u8mobic9.onmicrosoft.com",
+        "imageUrl": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3",
+        "descriptor": "aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+      },
+      "variables": {},
+      "variableGroups": [],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 1
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 1
+        }
+      },
+      "deployStep": {
+        "id": 2
+      },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 3
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 2
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": {
+              "parallelExecutionType": 0
+            },
+            "agentSpecification": {
+              "identifier": "ubuntu-20.04"
+            },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": {
+              "downloadInputs": [
+                {
+                  "alias": "_harinvb.CA-Customer",
+                  "artifactType": "Build",
+                  "artifactDownloadMode": "Selective",
+                  "artifactItems": [
+                    "CI_ARTIFACTS/**"
+                  ]
+                }
+              ]
+            },
+            "queueId": 28,
+            "demands": [],
+            "enableAccessToken": false,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {}
+          },
+          "rank": 1,
+          "phaseType": 1,
+          "name": "Manual-deploy",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {},
+              "taskId": "fe504acc-6115-40cb-89ff-191386b5e7bf",
+              "version": "2.*",
+              "name": "Terraform Initialize",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "provider": "azurerm",
+                "command": "init",
+                "workingDirectory": "$(System.DefaultWorkingDirectory)/_harinvb.CA-Customer/CI_ARTIFACTS/Terraform",
+                "commandOptions": "",
+                "environmentServiceNameAzureRM": "",
+                "environmentServiceNameAWS": "",
+                "environmentServiceNameGCP": "",
+                "backendServiceArm": "3b41522d-467a-4690-a17f-3233a2d1db94",
+                "backendAzureRmResourceGroupName": "cloud-shell-storage-centralindia",
+                "backendAzureRmStorageAccountName": "csg100320015f749fb9",
+                "backendAzureRmContainerName": "terraform",
+                "backendAzureRmKey": "CA_Assignment_Ansible_Managed_Node_State",
+                "backendServiceAWS": "",
+                "backendAWSBucketName": "",
+                "backendAWSKey": "",
+                "backendServiceGCP": "",
+                "backendGCPBucketName": "",
+                "backendGCPPrefix": ""
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "fe504acc-6115-40cb-89ff-191386b5e7bf",
+              "version": "2.*",
+              "name": "Terraform Create Infrastructure",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "provider": "azurerm",
+                "command": "apply",
+                "workingDirectory": "$(System.DefaultWorkingDirectory)/_harinvb.CA-Customer/CI_ARTIFACTS/Terraform",
+                "commandOptions": "",
+                "environmentServiceNameAzureRM": "3b41522d-467a-4690-a17f-3233a2d1db94",
+                "environmentServiceNameAWS": "",
+                "environmentServiceNameGCP": "",
+                "backendServiceArm": "",
+                "backendAzureRmResourceGroupName": "",
+                "backendAzureRmStorageAccountName": "",
+                "backendAzureRmContainerName": "",
+                "backendAzureRmKey": "",
+                "backendServiceAWS": "",
+                "backendAWSBucketName": "",
+                "backendAWSKey": "",
+                "backendServiceGCP": "",
+                "backendGCPBucketName": "",
+                "backendGCPPrefix": ""
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "5c9af2eb-5fc5-42dc-9b91-dc234a8c4400",
+              "version": "0.*",
+              "name": "Install an SSH key for ansible",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "hostName": "|1|oGNQOReOMx5sOj2szw/EDMO6t3k=|6h/eXeu5sRvWvKFvNNTBijeQPqU= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==",
+                "sshPublicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQe55Cuo73CvLPmQ7Tt8V9Wm/vAHoxRfWE8r8Jcn9DUbvPX6097isGUc0m7rBqKVL8usVGTlvaAHgCvqFZ27Oyzvu+ww5fW45dUuR4uRB0XTF6TBMfu0hDdzl19hmCJ4o0+C/6ukFvRFKMkro/1/SM2RhTUPSJShqNrsG3QJZATj4EcL5j64D5XrtYj9hkY11VizwdNFJp4/aQ3FBbLh2zyLzuUJnS/4L3aFTzDDTzpbf6UBUiZ8+Nosswv+X0ENT3HkeeAnw8qmx/H60jOCf3dS7U5LEj+jbD8bzqEUSukfi2ri4OMtjrdwFjl7qmxyiWQCQkSe/HX0zhluZKWqQHPOq+fuzR0TMzH2fPCnA9jrGUkUXtPiCJixzhhwksP74vFXCUH0cgBarlBXm7f3hEOjZyCLg1xwFMptdcHGHtl0As6wt6xwwBR5VJOOpmg9nADn3QEam4D+933hqXEHbrruO2N9SYO0VKF9j+sL044fV23osqPYqsi/MC5MCCmwE= hari@Inspiron-7573",
+                "sshPassphrase": "",
+                "sshKeySecureFile": "1938635d-fbe0-4fe4-b80c-859d4921d2c9",
+                "addEntryToConfig": "false",
+                "configHostAlias": "",
+                "configHostname": "",
+                "configUser": "",
+                "configPort": ""
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+              "version": "3.*",
+              "name": "Dynamic Inventory",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "targetType": "filePath",
+                "filePath": "$(System.DefaultWorkingDirectory)/_harinvb.CA-Customer/CI_ARTIFACTS/Terraform/Infrastructure.sh",
+                "arguments": "",
+                "script": "#! /bin/bash\ncd \"$(dirname \"${BASH_SOURCE[0]}\")\" || exit\nls -al",
+                "workingDirectory": "$(System.DefaultWorkingDirectory)/_harinvb.CA-Customer/CI_ARTIFACTS/Terraform",
+                "failOnStderr": "false",
+                "noProfile": "true",
+                "noRc": "true"
+              }
+            },
+            {
+              "environment": {},
+              "taskId": "6c731c3c-3c68-459a-a5c9-bde6e6595b5b",
+              "version": "3.*",
+              "name": "Ansible Playbook Execution",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": "task",
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "targetType": "inline",
+                "filePath": "",
+                "arguments": "",
+                "script": "#! /bin/bash\nansible-playbook ansible_java_application.yaml",
+                "workingDirectory": "$(System.DefaultWorkingDirectory)/_harinvb.CA-Customer/CI_ARTIFACTS/Ansible",
+                "failOnStderr": "false",
+                "noProfile": "true",
+                "noRc": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [],
+      "conditions": [
+        {
+          "name": "ReleaseStarted",
+          "conditionType": 1,
+          "value": ""
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [],
+      "currentRelease": {
+        "id": 14,
+        "url": "https://vsrm.dev.azure.com/IIHTharinvb/a74393ee-3c76-4074-a084-c16a00fd74bb/_apis/Release/releases/14",
+        "_links": {}
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {},
+      "properties": {
+        "BoardsEnvironmentType": {
+          "$type": "System.String",
+          "$value": "unmapped"
+        },
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "environmentTriggers": [],
+      "badgeUrl": "https://vsrm.dev.azure.com/IIHTharinvb/_apis/public/Release/badge/a74393ee-3c76-4074-a084-c16a00fd74bb/1/1"
+    },
+    {
+      "id": 2,
+      "name": "Kubernetes Deployment",
+      "rank": 2,
+      "owner": {
+        "displayName": "HariBabu Nalluri",
+        "url": "https://spsprodsin2.vssps.visualstudio.com/A0efa5c1d-6ab5-4215-86f5-1a3f4f0453d8/_apis/Identities/1b091ba2-59df-623c-aba4-9c7f30afec57",
+        "_links": {
+          "avatar": {
+            "href": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+          }
+        },
+        "id": "1b091ba2-59df-623c-aba4-9c7f30afec57",
+        "uniqueName": "admin@builderautoop7u8mobic9.onmicrosoft.com",
+        "imageUrl": "https://dev.azure.com/IIHTharinvb/_apis/GraphProfile/MemberAvatars/aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3",
+        "descriptor": "aad.MWIwOTFiYTItNTlkZi03MjNjLWFiYTQtOWM3ZjMwYWZlYzU3"
+      },
+      "variables": {},
+      "variableGroups": [],
+      "preDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 4
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 1
+        }
+      },
+      "deployStep": {
+        "id": 5
+      },
+      "postDeployApprovals": {
+        "approvals": [
+          {
+            "rank": 1,
+            "isAutomated": true,
+            "isNotificationOn": false,
+            "id": 6
+          }
+        ],
+        "approvalOptions": {
+          "requiredApproverCount": null,
+          "releaseCreatorCanBeApprover": false,
+          "autoTriggeredAndPreviousEnvironmentApprovedCanBeSkipped": false,
+          "enforceIdentityRevalidation": false,
+          "timeoutInMinutes": 0,
+          "executionOrder": 2
+        }
+      },
+      "deployPhases": [
+        {
+          "deploymentInput": {
+            "parallelExecution": {
+              "parallelExecutionType": 0
+            },
+            "agentSpecification": {
+              "identifier": "vs2017-win2016"
+            },
+            "skipArtifactsDownload": false,
+            "artifactsDownloadInput": {
+              "downloadInputs": [
+                {
+                  "alias": "_harinvb.CA-Customer",
+                  "artifactType": "Build",
+                  "artifactDownloadMode": "Selective",
+                  "artifactItems": [
+                    "CI_ARTIFACTS/**"
+                  ]
+                }
+              ]
+            },
+            "queueId": 28,
+            "demands": [],
+            "enableAccessToken": false,
+            "timeoutInMinutes": 0,
+            "jobCancelTimeoutInMinutes": 1,
+            "condition": "succeeded()",
+            "overrideInputs": {}
+          },
+          "rank": 1,
+          "phaseType": 1,
+          "name": "Agent job",
+          "refName": null,
+          "workflowTasks": [
+            {
+              "environment": {},
+              "taskId": "cbc316a2-586f-4def-be79-488a1f503564",
+              "version": "0.*",
+              "name": "Kubernetes Deployment",
+              "refName": "",
+              "enabled": true,
+              "alwaysRun": false,
+              "continueOnError": false,
+              "timeoutInMinutes": 0,
+              "definitionType": null,
+              "overrideInputs": {},
+              "condition": "succeeded()",
+              "inputs": {
+                "kubernetesServiceEndpoint": "3dbecbaf-0a12-4a40-9dd6-79a724d06e27",
+                "namespace": "default",
+                "command": "apply",
+                "useConfigurationFile": "true",
+                "configuration": "$(System.DefaultWorkingDirectory)/_harinvb.CA-Customer/CI_ARTIFACTS/Deployment.yaml",
+                "arguments": "",
+                "secretType": "dockerRegistry",
+                "secretArguments": "",
+                "containerRegistryType": "Container Registry",
+                "dockerRegistryEndpoint": "322f3b26-e0cf-46a3-86c4-64aae0626cca",
+                "azureSubscriptionEndpoint": "",
+                "azureContainerRegistry": "",
+                "secretName": "docker-creds",
+                "forceUpdate": "true",
+                "configMapName": "",
+                "forceUpdateConfigMap": "false",
+                "useConfigMapFile": "false",
+                "configMapFile": "",
+                "configMapArguments": "",
+                "versionOrLocation": "version",
+                "versionSpec": "1.7.0",
+                "checkLatest": "false",
+                "specifyLocation": "",
+                "cwd": "$(System.DefaultWorkingDirectory)",
+                "outputFormat": "json",
+                "kubectlOutput": ""
+              }
+            }
+          ]
+        }
+      ],
+      "environmentOptions": {
+        "emailNotificationType": "OnlyOnFailure",
+        "emailRecipients": "release.environment.owner;release.creator",
+        "skipArtifactsDownload": false,
+        "timeoutInMinutes": 0,
+        "enableAccessToken": false,
+        "publishDeploymentStatus": true,
+        "badgeEnabled": false,
+        "autoLinkWorkItems": false,
+        "pullRequestDeploymentEnabled": false
+      },
+      "demands": [],
+      "conditions": [
+        {
+          "name": "TerraAnsi",
+          "conditionType": 2,
+          "value": "4"
+        }
+      ],
+      "executionPolicy": {
+        "concurrencyCount": 1,
+        "queueDepthCount": 0
+      },
+      "schedules": [],
+      "currentRelease": {
+        "id": 14,
+        "url": "https://vsrm.dev.azure.com/IIHTharinvb/a74393ee-3c76-4074-a084-c16a00fd74bb/_apis/Release/releases/14",
+        "_links": {}
+      },
+      "retentionPolicy": {
+        "daysToKeep": 30,
+        "releasesToKeep": 3,
+        "retainBuild": true
+      },
+      "processParameters": {},
+      "properties": {
+        "BoardsEnvironmentType": {
+          "$type": "System.String",
+          "$value": "unmapped"
+        },
+        "LinkBoardsWorkItems": {
+          "$type": "System.String",
+          "$value": "False"
+        }
+      },
+      "preDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "postDeploymentGates": {
+        "id": 0,
+        "gatesOptions": null,
+        "gates": []
+      },
+      "environmentTriggers": [],
+      "badgeUrl": "https://vsrm.dev.azure.com/IIHTharinvb/_apis/public/Release/badge/a74393ee-3c76-4074-a084-c16a00fd74bb/1/2"
+    }
+  ],
+  "artifacts": [
+    {
+      "sourceId": "a74393ee-3c76-4074-a084-c16a00fd74bb:5",
+      "type": "Build",
+      "alias": "_harinvb.CA-Customer",
+      "definitionReference": {
+        "artifactSourceDefinitionUrl": {
+          "id": "https://dev.azure.com/IIHTharinvb/_permalink/_build/index?collectionId=d6a0b778-0bf4-4844-b24d-6b192e8a2614&projectId=a74393ee-3c76-4074-a084-c16a00fd74bb&definitionId=5",
+          "name": ""
+        },
+        "defaultVersionBranch": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionSpecific": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionTags": {
+          "id": "",
+          "name": ""
+        },
+        "defaultVersionType": {
+          "id": "latestType",
+          "name": "Latest"
+        },
+        "definition": {
+          "id": "5",
+          "name": "harinvb.CA-Customer"
+        },
+        "definitions": {
+          "id": "",
+          "name": ""
+        },
+        "IsMultiDefinitionType": {
+          "id": "False",
+          "name": "False"
+        },
+        "project": {
+          "id": "a74393ee-3c76-4074-a084-c16a00fd74bb",
+          "name": "CA-Customer"
+        },
+        "repository": {
+          "id": "",
+          "name": ""
+        }
+      },
+      "isPrimary": true,
+      "isRetained": false
+    }
+  ],
+  "triggers": [],
+  "releaseNameFormat": "Release-$(rev:r)",
+  "tags": [],
+  "properties": {
+    "DefinitionCreationSource": {
+      "$type": "System.String",
+      "$value": "ReleaseNew"
+    },
+    "IntegrateBoardsWorkItems": {
+      "$type": "System.String",
+      "$value": "False"
+    },
+    "IntegrateJiraWorkItems": {
+      "$type": "System.String",
+      "$value": "false"
+    }
+  },
+  "id": 1,
+  "name": "CA-CD-release",
+  "path": "\\Customer",
+  "projectReference": null,
+  "url": "https://vsrm.dev.azure.com/IIHTharinvb/a74393ee-3c76-4074-a084-c16a00fd74bb/_apis/Release/definitions/1",
+  "_links": {
+    "self": {
+      "href": "https://vsrm.dev.azure.com/IIHTharinvb/a74393ee-3c76-4074-a084-c16a00fd74bb/_apis/Release/definitions/1"
+    },
+    "web": {
+      "href": "https://dev.azure.com/IIHTharinvb/a74393ee-3c76-4074-a084-c16a00fd74bb/_release?definitionId=1"
+    }
+  }
+}
